@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+	<title>Portfolio</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  	<style>
+        .btn-fill{
+            color: #fff;
+        }
+        .btn:hover,
+        .btn:focus {
+            color: #fff;
+        }
+
+
+        /*----------------------------------------------------------------------------*/
+        .site-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            z-index: 5;
+        }
+
+        .site-logo h1 {
+            padding-bottom: 2px;
+            color:#212121;
+        }
+        .navbar-nav > li > a {
+            padding: 5px 0;
+            /*font-size: 15px;*/
+            font-weight: 600;
+            color: #212121;
+            text-transform: uppercase;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.25s ease-in-out;
+            -moz-transition: border-color 0.25s ease-in-out;
+            -webkit-transition: border-color 0.25s ease-in-out;
+            -o-transition: border-color 0.25s ease-in-out;
+            -ms-transition: border-color 0.25s ease-in-out;
+        }
+
+        .navbar-nav.navbar-right{
+            margin-left: 50%;
+        }
+
+        .navbar-nav > li > a:hover,
+        .navbar-nav > li.active > a,
+        .nav > li > a:hover,
+        .nav > li.active > a {
+            background-color: transparent;
+            border-bottom: 2px solid #212121;
+        }
+
+        .nav > li > a:focus {
+            background-color: transparent;
+        }
+        /*--------------------------------------------------------------*/
+
+        .hero { 
+            
+            background: url("{% static 'mycv/hero.jpg' %}") no-repeat center / cover; 
+            height: 100vh;
+            width: 100%;
+            min-height: 700px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            font-weight: 700;
+            /*margin: 0 0 15px;*/
+            margin-top: 25%;
+            text-transform: uppercase;
+        }
+
+        .job-title {
+            font-size: 22px;
+            margin-bottom: 30px;
+            line-height: 1;
+        } 
+
+        .hero img {
+            /*background: cover;*/
+            height: 85vh;
+            /*box-shadow: 0 4px 8px 0 #ccc, 0 6px 20px 0 #ccc;*/
+            /*background-repeat: no-repeat;*/
+        }
+
+
+        /* SITEMAIN
+        ================================================== */
+        .site-main {
+            position: relative;
+            margin-bottom: 100px;
+            background-color: #fff;
+            z-index: 1;
+        }
+        /* site-section */
+        .site-section {
+           padding-top: 120px;
+        }
+
+        .site-section h2,
+        .site-section h3 {
+            font-size: 36px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* Section: Skills */
+        .section-skills {
+            padding-bottom: 120px;
+        }
+
+        .skill + .skill {
+            margin-top: 50px;
+        }
+
+        .skill h4 {
+            font-size: 24px;
+            text-transform: uppercase;
+            margin: 0 0 15px;
+        }
+
+        .progress {
+            height: 15px;
+            margin-bottom: 0;
+            border-radius: 0;
+            background-color: #dfdfdf;
+            box-shadow: none;
+        }
+
+        .progress-bar {
+            background-color: #212121;  
+        }
+
+        /* Section: Services */
+        .section-services {
+            position: relative;
+            padding-top: 220px;
+        }
+
+        .section-services:before {
+            content: '';
+            background: url("{% static 'mycv/services-bg.jpg' %}") no-repeat fixed center / cover;
+            width: 100%;
+            height: 400px; 
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .overlay:after {
+            content: '';
+            width: 100%;
+            height: 400px; 
+            position: absolute;
+            background-color: rgba(255,255,255,0.5);
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .section-services .container {
+            padding: 120px 100px;
+            position: relative;
+            background-color: #fff;
+            box-shadow: 0px 0px 40px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .service h4 {
+            margin: 25px 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .service p {
+            color: #000;
+            margin-bottom: 0;
+        }
+
+        /* Section: Portfolio */
+        .section-portfolio {
+            padding-bottom: 120px;
+        }
+
+        .portfolio-item {
+            height: 235px;
+            /*margin-bottom: 30px;*/
+            position: relative;
+        }
+
+        .section-portfolio .col-md-4:nth-last-child(-n+3) .portfolio-item {
+            margin-bottom: 0;
+        }
+
+        .portfolio-item:before {
+            content: '';
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            transition: background-color 0.25s ease-in-out;
+            -moz-transition: background-color 0.25s ease-in-out;
+            -webkit-transition: background-color 0.25s ease-in-out;
+            -o-transition: background-color 0.25s ease-in-out;
+            -ms-transition: background-color 0.25s ease-in-out;
+        }
+
+        .portfolio-item:hover:before{
+            background-color: rgba(33,33,33,0.6);
+        }
+
+        .portfolio-item-info {
+            position: absolute;
+            top: 150px;
+            left: 0px;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out, left 0.25s ease-in-out;
+            -moz-transition: opacity 0.25s ease-in-out, left 0.25s ease-in-out;
+            -webkit-transition: opacity 0.25s ease-in-out, left 0.25s ease-in-out;
+            -o-transition: opacity 0.25s ease-in-out, left 0.25s ease-in-out;
+            -ms-transition: opacity 0.25s ease-in-out, left 0.25s ease-in-out;
+        }
+
+        .portfolio-item:hover .portfolio-item-info {
+            left: 50px;
+            opacity: 1;
+        }
+
+        .portfolio-item-info h4 {
+            margin: 0 0 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .portfolio-item-info a {
+            padding: 6px 7px 4px;
+            font-size: 12px;
+            border: 1px solid #fff;
+            border-radius: 50px;
+            color: #fff;
+            transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+            -moz-transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+            -webkit-transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+            -o-transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+            -ms-transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+        }
+
+        .portfolio-item-info a:hover {
+            color: #212121;
+            background-color: #fff;
+        }
+
+        .section-portfolio .btn {
+            margin-top: 10px;
+        }
+
+        .section-counters {
+            background: url("{% static 'mycv/counters-bg.jpg' %}") no-repeat fixed center / cover;
+            width: 100%;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-counters:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .section-counters h4 {
+            color: #fff;
+            margin: 25px 0 0;
+        }
+
+        .site-section p.counter {
+            font-size: 100px;
+            font-weight: 300;
+            color: #fff;
+            margin: 0;
+            line-height: 0.8;
+        }
+
+        /* FOOTER
+        ================================================== */
+        .site-footer {
+            position: fixed;
+            bottom: 0;
+            /*height: 10vh;*/
+            padding-top: 30px;
+            width: 100%;
+            background-color: #212121;
+            z-index: -1;
+        }
+
+        .icon {
+            line-height: 15px;
+            padding: 9px 11px;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 50%;
+        }
+
+        .icon + .icon {
+            margin-left: 5px;
+        }
+
+        .icon a:before {
+            margin:0;
+        }
+
+        .icon:hover {
+            background-color: #fff;
+        }
+
+        .site-footer a {
+            transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+            -moz-transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+            -webkit-transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+            -o-transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+            -ms-transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+        }
+
+        .copyright {
+            margin-bottom: 0;
+            line-height: 40px;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+	<header class="site-header">
+		<nav class="navbar navbar-expand-lg navbar-light">
+    		<div class="container">
+      			<a href="#hero" class="site-logo ml-5"><h1><u><b><i>BK</i></b></u></h1></a>
+       			
+       			<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    				<span class="navbar-toggler-icon"></span>
+  				</button>
+
+			    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+			      	<ul class="nav navbar-nav navbar-right">
+				        <li class="page-scroll nav-item mx-2"><a href="#hero" class="nav-link text-dark">Home</a></li>
+                        <li class="page-scroll nav-item mx-2"><a href="#about" class="nav-link text-dark">About</a></li>
+                        <li class="page-scroll nav-item mx-2"><a href="#service" class="nav-link text-dark">Service</a></li>
+                        <li class="page-scroll nav-item mx-2"><a href="#portfolio" class="nav-link text-dark">Portfolio</a></li>
+                        <li class="page-scroll nav-item mx-2"><a href="#contact" class="nav-link text-dark">Contact</a></li>
+			       	</ul>
+			    </div>
+			</div>
+  		</nav>
+	</header>
+    
+
+	<div id="hero" class="hero">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 mx-auto">
+                    <h1>Bhavesh Kumar</h1>
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} mb-0 w-50 alert-dismissible fade show" role="alert">
+                              <strong>Bhavesh : </strong> {{ message }}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                        {% endfor %}
+                    <div class="page-scroll">
+                        <p class="job-title">Full Stack Developer</p>
+                        <button class="btn btn-secondary" ><a href="#contact" class="btn btn-fill ">Hire me</a></button>
+                  		<button class="btn btn-outline-secondary" ><a href="#portfolio" class="btn btn-border">Explore</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main id="main" class="site-main">
+
+        <section id="about" class="site-section section-about text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <h2>About</h2>
+                        <img src="{% static 'mycv/lines.svg' %}" class="img-lines" alt="lines">
+                        <p class="mx-auto my-5 w-50">Hello! I'm Bhavesh, a full stack developer, a python enthusiast, and a guy slighty obsessed for code quality. If you have a project that you want to get started or think you need my help with something, then get in touch.</p>
+                        <a href="{% static 'mycv/CV_BK.pdf' %}" class="btn btn-secondary" target="_blank" download>Download my cv</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="site-section section-skills">
+            <div class="container">
+                <div class="text-center">
+                    <h3>My Skills</h3>
+                    <img src="{% static 'mycv/lines.svg' %}" class="img-lines" alt="lines">
+                </div>
+                <div class="row my-5">
+                    <div class="col-md-4">
+                        <div class="skill">
+                            <h4>Html/css</h4>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 85%;" role="progressbar" data-transitiongoal="100"></div><!-- /.progress-bar -->
+                            </div><!-- /.progress -->
+                        </div><!-- /.skill -->
+                        <div class="skill mb-5">
+                            <h4>Python</h4>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 80%;" role="progressbar" data-transitiongoal="100"></div><!-- /.progress-bar -->
+                            </div><!-- /.progress -->
+                        </div><!-- /.skill -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="skill">
+                            <h4>Javascript</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 50%;" data-transitiongoal="100"></div><!-- /.progress-bar -->
+                            </div><!-- /.progress -->
+                        </div><!-- /.skill -->
+                        <div class="skill mb-5">
+                            <h4>C</h4>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 70%;" role="progressbar" data-transitiongoal="100"></div><!-- /.progress-bar -->
+                            </div><!-- /.progress -->
+                        </div><!-- /.skill -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="skill">
+                            <h4>C++</h4>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 65%;" role="progressbar" data-transitiongoal="100"></div><!-- /.progress-bar -->
+                            </div><!-- /.progress -->
+                        </div><!-- /.skill -->
+                        <div class="skill">
+                            <h4>Django</h4>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 75%;" role="progressbar" data-transitiongoal="100"></div><!-- /.progress-bar -->
+                            </div><!-- /.progress -->
+                        </div><!-- /.skill -->
+                    </div>
+                </div>
+            </div>
+        </section><!-- /.secton-skills -->
+
+        <section id="service" class="site-section section-services overlay text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>What i do</h3>
+                        <img src="{% static 'mycv/lines.svg' %}" class="img-lines" alt="lines">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="service">
+                            <img src="{% static 'mycv/front-end.svg' %}" alt="Front End Developer">
+                            <h4>Front-end</h4>
+                            <p>As a javascript developer, I have experience in HTML5 and CSS3 techniques working with JavaScript and also use the Bootstrap-4 for attractive design.</p>
+                        </div><!-- /.service -->
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="service">
+                            <img src="{% static 'mycv/back-end.svg' %}" alt="Back End Developer">
+                            <h4>Back-end</h4>
+                            <p>Utilising python frameworks such as Django. I am using Mysql and SQlite3 as database in Django framework.
+                            I also started learning mongodb. </p>
+                        </div><!-- /.service -->
+                    </div>
+                </div>
+            </div>
+        </section><!-- /.secton-services -->
+
+        <section id="portfolio" class="site-section section-portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h3>My recent Works</h3>
+                    <img src="{% static 'mycv/lines.svg' %}" class="img-lines" alt="lines">
+                </div>
+                <div class="row">
+                    <div class="col-md-4 my-5">
+                        <div class="portfolio-item">
+                            <img src="{% static 'mycv/society.jpg' %}" class="img-res w-100 h-100" alt="">
+                            <div class="portfolio-item-info">
+                                <h4>Smart Society</h4>
+                                <a href="https://drive.google.com/drive/folders/179zEXn5qd_4vnkeRIwjEiPibtFMWYmJx?usp=sharing"><i class="fas fa-file"></i></a>
+                            </div><!-- /.portfolio-item-info -->
+                        </div><!-- /.portfolio-item -->
+                    </div>
+                    <div class="col-md-4 my-5">
+                        <div class="portfolio-item">
+                            <img src="{% static 'mycv/assis.png' %}" class="img-res w-100 h-100" alt="">
+                            <div class="portfolio-item-info">
+                                <h4>MyAssistent</h4>
+                                <a href="https://drive.google.com/file/d/1cyseXDL0dIILLbPtGa5ygwuhanaOCJGo/view?usp=sharing"><i class="fas fa-file"></i></a>
+                            </div><!-- /.portfolio-item-info -->
+                        </div><!-- /.portfolio-item -->
+                    </div>
+                    <div class="col-md-4 my-5">
+                        <div class="portfolio-item">
+                            <img src="{% static 'mycv/doc.jpg' %}" class="img-res w-100 h-100" alt="">
+                            <div class="portfolio-item-info">
+                                <h4>Doc_Security</h4>
+                                <a href="https://github.com/Bhavesh852/docsecurity.git"><i class="fas fa-file"></i></a>
+                            </div><!-- /.portfolio-item-info -->
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 my-5">
+                        <div class="portfolio-item">
+                            <img src="{% static 'mycv/art.jpg' %}" class="img-res w-100 h-100" alt="">
+                            <div class="portfolio-item-info">
+                                <h4>Art-Services</h4>
+                                <a href="https://github.com/Bhavesh852/ArtServices.git"><i class="fas fa-file"></i></a>
+                            </div><!-- /.portfolio-item-info -->
+                        </div><!-- /.portfolio-item -->
+                    </div>
+                    <div class="col-md-4 my-5">
+                        <div class="portfolio-item">
+                            <img src="{% static 'mycv/Gamer.jpg' %}" class="img-res w-100 h-100" alt="">
+                            <div class="portfolio-item-info">
+                                <h4>Pheonix(gamers media)</h4>
+                                <a href="https://github.com/Bhavesh852/phoenix.git"><i class="fas fa-file"></i></a>
+                            </div><!-- /.portfolio-item-info -->
+                        </div><!-- /.portfolio-item -->
+                    </div>
+                    <div class="col-md-4 my-5">
+                        <div class="portfolio-item">
+                            <img src="{% static 'mycv/college.jpg' %}" class="img-res w-100 h-100" alt="">
+                            <div class="portfolio-item-info">
+                                <h4>College selector</h4>
+                                <a href="https://github.com/Bhavesh852/college-selector.git"><i class="fas fa-file"></i></a>
+                            </div><!-- /.portfolio-item-info -->
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </section><!-- /.secton-portfolio -->
+        <section class="site-section section-counters text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <p class="counter start" data-to="10" data-speed="2000">1</p>
+                        <h4>Years Hands-On Experience</h4>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <p class="counter start" data-to="120" data-speed="2000">6</p>       
+                        <h4>Projects created</h4>      
+                    </div>
+                </div>
+            </div>
+        </section><!-- /.section-counters -->
+        <section id="contact" class="site-section section-form text-center">
+            <div class="container">
+
+                <h3>Contact</h3>
+                <img src="{% static 'mycv/lines.svg' %}" class="img-lines" alt="lines">
+                <form action="/hire_me/" method="POST">
+                    {% csrf_token %}
+                    <div class="row my-5">
+                        <div class="col-sm-6 my-2">
+                            <input type="text" name="name" class="form-control mt-x-0" placeholder="Name" required>
+                        </div>
+                        <div class="col-sm-6 my-2">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>   
+                        </div>
+                        <div class="col-sm-12 my-2">
+                            <textarea name="msg" id="mesaage" class="form-control" placeholder="Message" required></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary mb-5" type="submit">Hire Me <span class="glyphicon glyphicon-send"></span></button>
+                </form>
+            </div>
+        </section><!-- /.section-form -->
+    </main>
+    <footer id="colophon" class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+
+                    <a href="https://www.facebook.com/bhavesh.chandora.3" class="fa fa-facebook icon"></a>
+                    <a href="https://www.linkedin.com/in/bhavesh-kumar-71885117a" class="fa fa-linkedin icon"></a>
+                    <a href="https://www.instagram.com/bhaveshkumar_1/" class="fa fa-instagram icon"></a>
+                    
+                </div>
+                <div class="col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-3"><h5 class="copyright">2021. All Rights Reserved</h5></div>
+                <div class="col-sm-4 col-xs-3">
+                </div>
+            </div>
+        </div>
+    </footer><!-- /#footer -->
+
+</body>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
